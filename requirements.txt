@@ -7,3 +7,4 @@ Pillow
 ultralytics
 matplotlib
 deepface
+gdown
