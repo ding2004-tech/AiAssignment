@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import tempfile
 import os
+import gdown
 
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torchvision.models.detection.anchor_utils import AnchorGenerator
@@ -21,6 +22,18 @@ try:
     DEEPFACE_AVAILABLE = True
 except ImportError:
     DEEPFACE_AVAILABLE = False
+
+
+def download_model(file_id, output_path):
+    if not os.path.exists(output_path):
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, output_path, quiet=False)
+
+# Download models (replace FILE IDs)
+download_model("1gGhNFHZC6Wk5joKi38foAFUf0XsxWSGN", "FinalModel/best.pt")
+download_model("1uhLm3mOSVfL8XEL718KIx15rU9fJL9Fa", "FinalModel/rtdetr.pt")
+download_model("1MBMBmymZgQHUXwuikaJkm71yRiIZjx15", "FinalModel/smoke_model_v8.pth")
 
 # ─────────────────────────────────────────
 #  PAGE CONFIG
